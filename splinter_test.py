@@ -45,6 +45,7 @@ def download_all_omnisense():
     # Select date range (Past 24 hrs)
     dates = driver.find_element_by_name('dnldFrDate')
     date = date.datetime.strftime(date.datetime.now()-date.timedelta(1) ,'%m/%d/%Y')
+    datepass = date.replace('/','_')
     dates.send_keys(Keys.CONTROL+'a')
     dates.send_keys(Keys.DELETE)
     dates.send_keys(date)
@@ -82,7 +83,7 @@ def download_all_omnisense():
         driver.switch_to_window(main_window)
         
         # Read and collect data for current sensor
-        array = read_all_omnisense(sensor)
+        array = read_all_omnisense(sensor,datepass)
 #        if array == []:
 #            continue
 #        else:
@@ -104,7 +105,7 @@ def download_all_omnisense():
     #
     #driver.quit()
     
-def read_all_omnisense(sensor):
+def read_all_omnisense(sensor,datepass):
     import numpy as np
     import os
     import glob
@@ -112,7 +113,7 @@ def read_all_omnisense(sensor):
     # Scan files in W.D. and get most recently modified (ie. new downloaded data)
     files = glob.glob('C:\\Users\Ashton\Downloads\*')
     latest = max(files, key=os.path.getctime)
-    filename = os.getcwd()+'\\DATA'+sensor+'.txt'
+    filename = os.getcwd()+'\\C12_'+datepass+'\\DATA'+sensor+'.txt'
         
     
     # Overwrite file with no commas and save to WD
