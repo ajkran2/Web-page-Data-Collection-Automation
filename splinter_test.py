@@ -33,8 +33,8 @@ def download_all_omnisense():
     login = driver.find_element_by_name("userId")
     password = driver.find_element_by_name("userPass")
     
-    login.send_keys("AKrajnovich")
-    password.send_keys("Mines254178")
+    login.send_keys("**********")
+    password.send_keys("*********")
     password.send_keys(Keys.RETURN)
     
     # Navigate to downloads screen
